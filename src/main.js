@@ -1,6 +1,7 @@
 const Title = () => <h1>Moje ulubione roślinne przepisy</h1>;
 
-class Post extends React.Component {
+// VERSION WITH CLASS COMPONENT - COMMENTED
+/* class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +24,21 @@ class Post extends React.Component {
       </div>
   );
   }
+} */
+
+//VERSION WITH FUNCTION COMPONENT
+const Post = props => {
+  const [isAllContentShown, toggleContent] = React.useState(false);
+
+  return (
+    <div>
+      <h2>{props.title}</h2>
+      {isAllContentShown 
+      ? <div><p>{props.content}</p><button onClick={() => toggleContent(!isAllContentShown)}>Pokaż mniej</button></div> 
+      : <div><p>{props.shortContent}</p><button onClick={() => toggleContent(!isAllContentShown)}>Pokaż cały przepis</button></div>}
+      <hr />
+    </div>
+  )
 }
 
 const Blog = function() {
